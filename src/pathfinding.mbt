@@ -2,7 +2,7 @@
 /// This implementation assumes edge weights are `Int`.
 /// Returns an array where the value at index `i` is the shortest distance from `start` to node `i`.
 /// Unreachable nodes will have distance `2147483647` (max int).
-pub fn dijkstra[N](self : Graph[N, Int], start : NodeIndex) -> Array[Int] {
+pub fn[N] Graph::dijkstra(self : Graph[N, Int], start : NodeIndex) -> Array[Int] {
   let num_nodes = self.nodes.length()
   let dist = Array::make(num_nodes, 2147483647)
   
@@ -14,7 +14,7 @@ pub fn dijkstra[N](self : Graph[N, Int], start : NodeIndex) -> Array[Int] {
   let pq : PriorityQueue[Int, NodeIndex] = PriorityQueue::new()
   pq.push(0, start)
   
-  while not(pq.is_empty()) {
+  while !pq.is_empty() {
     match pq.pop() {
       None => break
       Some(u) => {
@@ -44,3 +44,4 @@ pub fn dijkstra[N](self : Graph[N, Int], start : NodeIndex) -> Array[Int] {
   }
   dist
 }
+

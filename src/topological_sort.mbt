@@ -1,8 +1,8 @@
 /// Topological sort of a directed acyclic graph (DAG) using Kahn's Algorithm.
 /// Returns an array of `NodeIndex` in topological order.
 /// Returns `None` if the graph is undirected or if a cycle is detected.
-pub fn topological_sort[N, E](self : Graph[N, E]) -> Array[NodeIndex]? {
-  if not(self.is_directed) {
+pub fn[N, E] Graph::topological_sort(self : Graph[N, E]) -> Array[NodeIndex]? {
+  if !self.is_directed {
     return None // only defined for directed graphs
   }
   
@@ -11,7 +11,7 @@ pub fn topological_sort[N, E](self : Graph[N, E]) -> Array[NodeIndex]? {
   
   // Compute in-degrees for all nodes
   for i = 0; i < len; i = i + 1 {
-    let nbrs = self.neighbors({ val: i })
+    let nbrs = self.neighbors(NodeIndex::{ val: i })
     for j = 0; j < nbrs.length(); j = j + 1 {
       in_degree[nbrs[j].val] = in_degree[nbrs[j].val] + 1
     }
@@ -20,7 +20,7 @@ pub fn topological_sort[N, E](self : Graph[N, E]) -> Array[NodeIndex]? {
   let queue = []
   for i = 0; i < len; i = i + 1 {
     if in_degree[i] == 0 {
-      queue.push({ val: i })
+      queue.push(NodeIndex::{ val: i })
     }
   }
   
@@ -48,3 +48,4 @@ pub fn topological_sort[N, E](self : Graph[N, E]) -> Array[NodeIndex]? {
     None // cycle detected
   }
 }
+

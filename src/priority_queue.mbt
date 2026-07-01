@@ -7,16 +7,16 @@ pub struct PriorityQueue[K, V] {
   data : Array[PQElement[K, V]]
 }
 
-pub fn PriorityQueue::new[K, V]() -> PriorityQueue[K, V] {
+pub fn[K, V] PriorityQueue::new() -> PriorityQueue[K, V] {
   { data: [] }
 }
 
-pub fn push[K : Compare, V](self : PriorityQueue[K, V], priority : K, value : V) -> Unit {
+pub fn[K : Compare, V] PriorityQueue::push(self : PriorityQueue[K, V], priority : K, value : V) -> Unit {
   self.data.push({ priority, value })
   self.sift_up(self.data.length() - 1)
 }
 
-pub fn pop[K : Compare, V](self : PriorityQueue[K, V]) -> V? {
+pub fn[K : Compare, V] PriorityQueue::pop(self : PriorityQueue[K, V]) -> V? {
   if self.data.length() == 0 {
     return None
   }
@@ -29,11 +29,11 @@ pub fn pop[K : Compare, V](self : PriorityQueue[K, V]) -> V? {
   Some(result)
 }
 
-pub fn is_empty[K, V](self : PriorityQueue[K, V]) -> Bool {
+pub fn[K, V] PriorityQueue::is_empty(self : PriorityQueue[K, V]) -> Bool {
   self.data.length() == 0
 }
 
-fn sift_up[K : Compare, V](self : PriorityQueue[K, V], index : Int) -> Unit {
+fn[K : Compare, V] PriorityQueue::sift_up(self : PriorityQueue[K, V], index : Int) -> Unit {
   let mut i = index
   while i > 0 {
     let parent = (i - 1) / 2
@@ -48,7 +48,7 @@ fn sift_up[K : Compare, V](self : PriorityQueue[K, V], index : Int) -> Unit {
   }
 }
 
-fn sift_down[K : Compare, V](self : PriorityQueue[K, V], index : Int) -> Unit {
+fn[K : Compare, V] PriorityQueue::sift_down(self : PriorityQueue[K, V], index : Int) -> Unit {
   let len = self.data.length()
   let mut i = index
   while true {
@@ -73,3 +73,4 @@ fn sift_down[K : Compare, V](self : PriorityQueue[K, V], index : Int) -> Unit {
     }
   }
 }
+

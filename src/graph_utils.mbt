@@ -1,12 +1,12 @@
-pub fn node_count[N, E](self : Graph[N, E]) -> Int {
+pub fn[N, E] Graph::node_count(self : Graph[N, E]) -> Int {
   self.nodes.length()
 }
 
-pub fn edge_count[N, E](self : Graph[N, E]) -> Int {
+pub fn[N, E] Graph::edge_count(self : Graph[N, E]) -> Int {
   self.edges.length()
 }
 
-pub fn node_weight[N, E](self : Graph[N, E], idx : NodeIndex) -> N? {
+pub fn[N, E] Graph::node_weight(self : Graph[N, E], idx : NodeIndex) -> N? {
   if idx.val >= 0 && idx.val < self.nodes.length() {
     Some(self.nodes[idx.val].weight)
   } else {
@@ -14,7 +14,7 @@ pub fn node_weight[N, E](self : Graph[N, E], idx : NodeIndex) -> N? {
   }
 }
 
-pub fn edge_weight[N, E](self : Graph[N, E], idx : EdgeIndex) -> E? {
+pub fn[N, E] Graph::edge_weight(self : Graph[N, E], idx : EdgeIndex) -> E? {
   if idx.val >= 0 && idx.val < self.edges.length() {
     Some(self.edges[idx.val].weight)
   } else {
@@ -22,8 +22,8 @@ pub fn edge_weight[N, E](self : Graph[N, E], idx : EdgeIndex) -> E? {
   }
 }
 
-pub fn neighbors[N, E](self : Graph[N, E], source : NodeIndex) -> Array[NodeIndex] {
-  let mut result = []
+pub fn[N, E] Graph::neighbors(self : Graph[N, E], source : NodeIndex) -> Array[NodeIndex] {
+  let result = []
   if source.val < 0 || source.val >= self.nodes.length() {
     return result
   }
@@ -40,3 +40,4 @@ pub fn neighbors[N, E](self : Graph[N, E], source : NodeIndex) -> Array[NodeInde
   }
   result
 }
+

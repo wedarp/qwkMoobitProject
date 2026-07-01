@@ -16,7 +16,7 @@ pub fn DisjointSet::new(size : Int) -> DisjointSet {
 
 /// Finds the representative of the set that contains `i`.
 /// Uses path compression.
-pub fn find(self : DisjointSet, i : Int) -> Int {
+pub fn DisjointSet::find(self : DisjointSet, i : Int) -> Int {
   if self.parent[i] == i {
     i
   } else {
@@ -29,7 +29,7 @@ pub fn find(self : DisjointSet, i : Int) -> Int {
 /// Unions the sets that contain `i` and `j`.
 /// Returns `true` if they were in different sets and merged, `false` otherwise.
 /// Uses union by rank.
-pub fn union(self : DisjointSet, i : Int, j : Int) -> Bool {
+pub fn DisjointSet::union(self : DisjointSet, i : Int, j : Int) -> Bool {
   let root_i = self.find(i)
   let root_j = self.find(j)
   if root_i != root_j {
@@ -46,3 +46,4 @@ pub fn union(self : DisjointSet, i : Int, j : Int) -> Bool {
     false
   }
 }
+

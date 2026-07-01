@@ -1,6 +1,6 @@
 /// Breadth-First Search (BFS) Traversal.
 /// Returns an array of node indices in the order they were visited.
-pub fn bfs[N, E](self : Graph[N, E], start : NodeIndex) -> Array[NodeIndex] {
+pub fn[N, E] Graph::bfs(self : Graph[N, E], start : NodeIndex) -> Array[NodeIndex] {
   let visited = Array::make(self.nodes.length(), false)
   let result = []
   if start.val < 0 || start.val >= self.nodes.length() {
@@ -19,7 +19,7 @@ pub fn bfs[N, E](self : Graph[N, E], start : NodeIndex) -> Array[NodeIndex] {
     let nbrs = self.neighbors(current)
     for i = 0; i < nbrs.length(); i = i + 1 {
       let neighbor = nbrs[i]
-      if not(visited[neighbor.val]) {
+      if !visited[neighbor.val] {
         visited[neighbor.val] = true
         queue.push(neighbor)
       }
@@ -30,7 +30,7 @@ pub fn bfs[N, E](self : Graph[N, E], start : NodeIndex) -> Array[NodeIndex] {
 
 /// Depth-First Search (DFS) Traversal.
 /// Returns an array of node indices in the order they were visited.
-pub fn dfs[N, E](self : Graph[N, E], start : NodeIndex) -> Array[NodeIndex] {
+pub fn[N, E] Graph::dfs(self : Graph[N, E], start : NodeIndex) -> Array[NodeIndex] {
   let visited = Array::make(self.nodes.length(), false)
   let result = []
   if start.val < 0 || start.val >= self.nodes.length() {
@@ -48,7 +48,7 @@ pub fn dfs[N, E](self : Graph[N, E], start : NodeIndex) -> Array[NodeIndex] {
     // To match typical DFS behavior, we might push in reverse order, but for a general graph it doesn't matter.
     for i = 0; i < nbrs.length(); i = i + 1 {
       let neighbor = nbrs[i]
-      if not(visited[neighbor.val]) {
+      if !visited[neighbor.val] {
         visited[neighbor.val] = true
         stack.push(neighbor)
       }
@@ -56,3 +56,4 @@ pub fn dfs[N, E](self : Graph[N, E], start : NodeIndex) -> Array[NodeIndex] {
   }
   result
 }
+

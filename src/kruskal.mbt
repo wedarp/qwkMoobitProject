@@ -7,7 +7,7 @@ struct WeightedEdge {
 
 /// Kruskal's algorithm for finding the Minimum Spanning Tree (MST).
 /// Returns an array of `EdgeIndex` that form the MST.
-pub fn kruskal_mst[N](self : Graph[N, Int]) -> Array[EdgeIndex] {
+pub fn[N] Graph::kruskal_mst(self : Graph[N, Int]) -> Array[EdgeIndex] {
   let edges = []
   for i = 0; i < self.nodes.length(); i = i + 1 {
     let mut curr = self.nodes[i].first_outgoing_edge
@@ -18,7 +18,7 @@ pub fn kruskal_mst[N](self : Graph[N, Int]) -> Array[EdgeIndex] {
           let edge = self.edges[edge_idx.val]
           // To avoid duplicating edges in an undirected graph, only consider source <= target
           if i <= edge.target_node.val {
-            edges.push({ idx: edge_idx, source: {val: i}, target: edge.target_node, weight: edge.weight })
+            edges.push({ idx: edge_idx, source: NodeIndex::{val: i}, target: edge.target_node, weight: edge.weight })
           }
           curr = edge.next_outgoing_edge
         }
@@ -40,3 +40,4 @@ pub fn kruskal_mst[N](self : Graph[N, Int]) -> Array[EdgeIndex] {
   }
   mst
 }
+
