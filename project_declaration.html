@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026 MoonBit 开源生态共建 - MoonGraph 项目申报书</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #0f172a;
+      --primary-accent: #2563eb;
+      --text: #334155;
+      --text-light: #64748b;
+      --bg: #f8fafc;
+      --border: #e2e8f0;
+      --accent-bg: #eff6ff;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft YaHei", sans-serif;
+      color: var(--text);
+      background-color: var(--bg);
+      line-height: 1.4;
+      padding: 20px;
+    }
+
+    /* A4 Styling for Screen Preview & Print */
+    .page {
+      background: white;
+      width: 210mm;
+      height: 297mm;
+      margin: 0 auto;
+      padding: 15mm;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    @media print {
+      body {
+        background: none;
+        padding: 0;
+      }
+      .page {
+        width: 210mm;
+        height: 297mm;
+        box-shadow: none;
+        margin: 0;
+        padding: 12mm;
+        page-break-inside: avoid;
+      }
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+    }
+
+    /* Header */
+    header {
+      border-bottom: 2px solid var(--primary-accent);
+      padding-bottom: 12px;
+      margin-bottom: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+    }
+
+    .title-area h1 {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary);
+      letter-spacing: -0.5px;
+    }
+
+    .title-area p {
+      font-size: 13px;
+      color: var(--primary-accent);
+      font-weight: 500;
+      margin-top: 2px;
+    }
+
+    .meta-tag {
+      font-size: 11px;
+      background-color: var(--accent-bg);
+      color: var(--primary-accent);
+      padding: 4px 8px;
+      border-radius: 4px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    /* Info Grid (2 columns) */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 15px;
+      background: var(--bg);
+      padding: 12px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    .info-item {
+      font-size: 12px;
+    }
+
+    .info-item strong {
+      color: var(--primary);
+      display: inline-block;
+      width: 90px;
+    }
+
+    .info-item a {
+      color: var(--primary-accent);
+      text-decoration: none;
+      word-break: break-all;
+    }
+
+    /* Sections */
+    section {
+      margin-bottom: 14px;
+    }
+
+    section h2 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--primary);
+      border-left: 3px solid var(--primary-accent);
+      padding-left: 8px;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .section-content {
+      font-size: 12px;
+      color: var(--text);
+      text-align: justify;
+    }
+
+    ul, ol {
+      margin-left: 16px;
+      margin-top: 4px;
+    }
+
+    li {
+      margin-bottom: 3px;
+    }
+
+    .two-col-layout {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 15px;
+    }
+
+    /* Highlights / Cards */
+    .highlight-card {
+      background: var(--accent-bg);
+      border-left: 3px solid var(--primary-accent);
+      padding: 8px 12px;
+      border-radius: 0 4px 4px 0;
+      font-size: 11.5px;
+      margin-top: 4px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 1px 5px;
+      background: var(--border);
+      border-radius: 3px;
+      font-size: 10px;
+      font-weight: 500;
+      margin-right: 3px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+      color: var(--text-light);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page">
+    <div>
+      <header>
+        <div class="title-area">
+          <h1>MoonGraph 项目申报书</h1>
+          <p>纯 MoonBit 实现的高性能通用图论数据结构与算法基础库</p>
+        </div>
+        <span class="meta-tag">OSC2026 第一赛道</span>
+      </header>
+
+      <!-- 基本信息 -->
+      <div class="info-grid">
+        <div class="info-item"><strong>申报人：</strong>权炜琨</div>
+        <div class="info-item"><strong>项目方向：</strong>基础数据结构与算法</div>
+        <div class="info-item"><strong>GitHub 仓库：</strong><a href="https://github.com/wedarp/MoonGraph" target="_blank">github.com/wedarp/MoonGraph</a></div>
+        <div class="info-item"><strong>GitLink 仓库：</strong><a href="https://gitlink.org.cn/Qqwkkr/MoonGraph" target="_blank">gitlink.org.cn/Qqwkkr/MoonGraph</a></div>
+        <div class="info-item"><strong>参考项目：</strong>Rust 生态的 petgraph</div>
+        <div class="info-item"><strong>开源许可证：</strong>MIT License</div>
+      </div>
+
+      <!-- 项目要做什么 -->
+      <section>
+        <h2>一、 项目要做什么（Project Overview）</h2>
+        <div class="section-content">
+          <p><strong>MoonGraph</strong> 是一个专注于提供全面、高效的图论数据结构与核心算法的 MoonBit 开源基础库。本项目使用纯 MoonBit 语言开发，实现了具有高度泛型化的有向图与无向图数据结构（基于高性能邻接表构建），并深度集成了一系列经典的图遍历、最短路径寻路、最小生成树、强连通分量以及拓扑排序等算法，旨在为 MoonBit 开发者提供开箱即用、类型安全且无外部依赖的图论基础设施。</p>
+        </div>
+      </section>
+
+      <!-- 为什么值得做 -->
+      <section>
+        <h2>二、 为什么值得做（Value & Background）</h2>
+        <div class="section-content">
+          <p>随着 MoonBit 生态的快速崛起，开发者对于底层通用复杂数据结构的需求日益迫切。目前 MoonBit 包管理器 <code>mooncakes.io</code> 上主要以简单的项目脚手架为主，缺乏一个如 Rust 生态的 <code>petgraph</code> 或 Python 生态的 <code>NetworkX</code> 这样大而全、经过严苛测试的通用图论基础库。图论是计算机科学的基石，MoonGraph 能够作为以下领域的底层构件：</p>
+          <div class="highlight-card">
+            <strong>核心应用场景：</strong><br>
+            • <strong>编译器与构建系统</strong>：模块依赖分析、检测循环引用（有向图环检测）、生成编译序（拓扑排序）。<br>
+            • <strong>游戏开发与机器人寻路</strong>：利用内置的 Dijkstra 与 A* 算法进行地图网格的高效路网搜索与路径规划。<br>
+            • <strong>学术研究与网络分析</strong>：对社交网络、物流拓扑和交通网络进行连通性及最短路径计算。
+          </div>
+        </div>
+      </section>
+
+      <!-- 拟实现的核心功能 -->
+      <div class="two-col-layout">
+        <section>
+          <h2>三、 核心算法与实现（Technical Features）</h2>
+          <div class="section-content">
+            <p>项目代码完全符合 modern MoonBit 强类型与泛型设计规范，避免任何过时的语法，零 Warning 编译，支持功能包括：</p>
+            <ul>
+              <li><strong>核心结构</strong>：<code>Graph[N, E]</code>，支持节点与边附带任意泛型权重（Generics），基于二元邻接表保证遍历性能。</li>
+              <li><strong>基础搜索</strong>：高效的广度优先搜索 (BFS) 与深度优先搜索 (DFS)。</li>
+              <li><strong>寻路引擎</strong>：
+                <br>• <span class="badge">Dijkstra</span>：经典单源最短路径。
+                <br>• <span class="badge">A* (A-Star)</span>：支持启发式估算函数的高速路径规划。
+                <br>• <span class="badge">Bellman-Ford</span>：支持负权边搜索并内置**负环检测**。
+              </li>
+              <li><strong>高级算法</strong>：
+                <br>• <span class="badge">Kruskal MST</span>：依托高效并查集（Disjoint Set）计算最小生成树。
+                <br>• <span class="badge">Kahn 拓扑排序</span>：检测 DAG 依赖关系并产生拓扑序。
+                <br>• <span class="badge">Tarjan SCC</span>：寻找有向图中的强连通分量。
+              </li>
+              <li><strong>可视化支持</strong>：支持一键导出为标准的 Graphviz DOT 文本，方便直观查看图拓扑。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <h2>四、 计划如何实现（Implementation Plan）</h2>
+          <div class="section-content">
+            <p>项目采用增量、逻辑高度自治的开发流程，已在本地和 Git 历史中规范提交（包含 19 个详细 commits）：</p>
+            <ol>
+              <li><strong>第一阶段</strong>：定义图与节点/边索引数据结构，提供基础增删查改 API。</li>
+              <li><strong>第二阶段</strong>：引入二叉堆结构实现 <code>PriorityQueue</code>，为 Dijkstra 和 A* 提供高性能底层。</li>
+              <li><strong>第三阶段</strong>：引入 <code>DisjointSet</code>（Union-Find）实现 Kruskal，添加 Kahn 拓扑排序。</li>
+              <li><strong>第四阶段</strong>：引入 Tarjan SCC、多维环检测以及 Graphviz 导出器。</li>
+              <li><strong>第五阶段</strong>：对标现代 MoonBit 规范进行全库语法升级（零警告编译），编写全面单元测试。</li>
+            </ol>
+          </div>
+        </section>
+      </div>
+
+      <!-- 最终交付什么 -->
+      <section>
+        <h2>五、 最终交付物（Deliverables）</h2>
+        <div class="section-content">
+          <ul>
+            <li><strong>纯 MoonBit 模块包</strong>：完全不依赖外部第三方包的 <code>MoonGraph</code> 图论核心库。</li>
+            <li><strong>规范化测试套件</strong>：<code>graph_test.mbt</code> 包含 10 组涵盖所有算法和特性的自动化单元测试，确保无内存泄漏、稳定可靠。</li>
+            <li><strong>开发文档与范例</strong>：完整的 <code>README.md</code> 包含详实的安装指引、API 接口描述及常见算法在 MoonBit 中的调用案例。</li>
+            <li><strong>完整版本控制记录</strong>：包含 19 个高可读性、由浅入深的 Git Commit 记录，展示了真实的敏捷开发节奏。</li>
+          </ul>
+        </section>
+    </div>
+
+    <!-- 底部 -->
+    <footer>
+      <span>项目申报书（OSC2026 - 权炜琨）</span>
+      <span>建议转换为 A4 单页 PDF 提交</span>
+      <span>页码：1 / 1</span>
+    </footer>
+  </div>
+
+</body>
+</html>
